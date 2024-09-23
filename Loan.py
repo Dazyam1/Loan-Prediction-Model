@@ -3,10 +3,14 @@ import pandas as pd
 import pickle
 import joblib
 
-# Load the pre-trained model using pickle
-model_path = 'C:/Users/user/Documents/Data Science/Models/Loan/Loan Prediction Model 1.sav'
-with open(model_path, 'rb') as file:
-    model = joblib.load(file)
+model = None  # Initialize model as None
+model_path = 'Loan Prediction Model 1.sav'
+
+try:
+    with open(model_path, 'rb') as file:
+        model = pickle.load(file)
+except Exception as e:
+    st.write(f"Error loading model: {e}")
 
 # Initialize the input fields in Streamlit
 st.title('Loan Status Prediction')
